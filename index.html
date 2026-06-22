@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laiza Beauty — Beleza que Cuida</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink-light: #F8D7E3;
+    --pink-mid: #EFA4C0;
+    --pink-strong: #D95A92;
+    --white: #FFFFFF;
+    --gray: #F5F5F5;
+    --text-dark: #2C1A22;
+    --text-mid: #6B3F55;
+    --text-soft: #9E6B80;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--pink-light);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 600;
+    color: var(--pink-strong);
+    text-decoration: none; letter-spacing: -0.5px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-mid);
+    font-size: 0.875rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pink-strong); }
+  .nav-cta {
+    background: var(--pink-strong); color: white;
+    border: none; border-radius: 50px; padding: 0.5rem 1.25rem;
+    font-size: 0.875rem; font-weight: 500; cursor: pointer;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: #c04a7f; transform: scale(1.02); }
+  .nav-cart { position: relative; cursor: pointer; font-size: 1.2rem; margin-right: 1rem; }
+  .cart-badge {
+    position: absolute; top: -6px; right: -6px;
+    background: var(--pink-strong); color: white;
+    font-size: 0.6rem; font-weight: 600;
+    width: 16px; height: 16px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text-dark); border-radius: 2px; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FDE8F0 0%, #F8D7E3 40%, #EFA4C0 100%);
+    display: flex; align-items: center;
+    padding: 80px 5% 0;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-circles {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-bg-circles span {
+    position: absolute; border-radius: 50%;
+    background: rgba(217,90,146,0.08);
+  }
+  .hero-bg-circles span:nth-child(1) { width: 500px; height: 500px; top: -150px; right: -100px; }
+  .hero-bg-circles span:nth-child(2) { width: 300px; height: 300px; bottom: 50px; left: -80px; }
+  .hero-bg-circles span:nth-child(3) { width: 200px; height: 200px; top: 30%; right: 30%; }
+  .hero-content { max-width: 560px; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(217,90,146,0.12);
+    color: var(--pink-strong);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 0.4rem 1rem;
+    border-radius: 50px; margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.2; font-weight: 600;
+    color: var(--text-dark); margin-bottom: 1.25rem;
+  }
+  .hero-title em { color: var(--pink-strong); font-style: normal; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-mid);
+    line-height: 1.7; margin-bottom: 2.5rem; max-width: 440px;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--pink-strong); color: white;
+    border: none; border-radius: 50px; padding: 0.85rem 2rem;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: #c04a7f; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--pink-strong);
+    border: 2px solid var(--pink-strong); border-radius: 50px;
+    padding: 0.85rem 2rem; font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--pink-strong); color: white; transform: translateY(-2px); }
+  .hero-visual {
+    flex: 1; display: flex; justify-content: flex-end; align-items: flex-end;
+    min-height: 500px; position: relative;
+  }
+  .hero-mockup-img {
+    width: 380px; height: 480px;
+    background: linear-gradient(160deg, #f7c6de 0%, #e8a0bf 50%, #d46fa3 100%);
+    border-radius: 24px 24px 0 0;
+    position: relative; overflow: hidden;
+    box-shadow: 0 32px 80px rgba(217,90,146,0.25);
+  }
+  .hero-products {
+    position: absolute; inset: 0;
+    display: grid; grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; gap: 12px; padding: 20px;
+    align-items: center; justify-items: center;
+  }
+  .hero-product-dot {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+    animation: float 3s ease-in-out infinite;
+  }
+  .hero-product-dot:nth-child(2) { animation-delay: 0.5s; }
+  .hero-product-dot:nth-child(3) { animation-delay: 1s; }
+  .hero-product-dot:nth-child(4) { animation-delay: 1.5s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .hero-tag {
+    position: absolute; background: white; border-radius: 12px;
+    padding: 0.6rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    font-size: 0.8rem; font-weight: 600; color: var(--text-dark);
+  }
+  .hero-tag-1 { top: 30px; left: -30px; }
+  .hero-tag-2 { bottom: 80px; left: -40px; }
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 2rem;
+    padding-top: 2rem; border-top: 1px solid rgba(217,90,146,0.2);
+  }
+  .hero-stat strong { display: block; font-size: 1.5rem; font-weight: 600; color: var(--pink-strong); }
+  .hero-stat span { font-size: 0.8rem; color: var(--text-soft); }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 5rem 5%; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--pink-strong);
+    margin-bottom: 0.6rem; display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 600; color: var(--text-dark);
+    margin-bottom: 0.75rem; line-height: 1.25;
+  }
+  .section-sub {
+    color: var(--text-soft); font-size: 1rem;
+    line-height: 1.65; max-width: 520px; margin-bottom: 3rem;
+  }
+
+  /* ─── CATEGORIES ─── */
+  #categories { background: var(--gray); }
+  .cat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+  .cat-card {
+    background: white; border-radius: 16px; padding: 1.75rem 1.25rem;
+    text-align: center; cursor: pointer; transition: all 0.2s;
+    border: 2px solid transparent;
+  }
+  .cat-card:hover, .cat-card.active {
+    border-color: var(--pink-strong);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(217,90,146,0.15);
+  }
+  .cat-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+  .cat-name { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); }
+
+  /* ─── PRODUCTS ─── */
+  .products-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: white; border-radius: 20px;
+    overflow: hidden; transition: all 0.25s;
+    border: 1px solid rgba(217,90,146,0.1);
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(217,90,146,0.18);
+  }
+  .product-img {
+    height: 200px; background: linear-gradient(135deg, #FDE8F0, #EFA4C0);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; position: relative;
+  }
+  .product-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--pink-strong); color: white;
+    font-size: 0.65rem; font-weight: 700; padding: 0.25rem 0.6rem;
+    border-radius: 50px; letter-spacing: 0.5px;
+  }
+  .product-info { padding: 1.25rem; }
+  .product-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .product-desc { font-size: 0.8rem; color: var(--text-soft); margin-bottom: 0.8rem; line-height: 1.5; }
+  .product-stars { font-size: 0.75rem; color: #f59e0b; margin-bottom: 0.75rem; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+  .product-price { font-size: 1.15rem; font-weight: 700; color: var(--pink-strong); }
+  .product-price-old {
+    font-size: 0.75rem; color: var(--text-soft);
+    text-decoration: line-through; margin-bottom: 0.1rem;
+  }
+  .btn-cart {
+    background: var(--pink-light); color: var(--pink-strong);
+    border: none; border-radius: 50px; padding: 0.45rem 1rem;
+    font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-cart:hover { background: var(--pink-strong); color: white; }
+
+  /* ─── PROBLEMA x SOLUÇÃO ─── */
+  #solucao {
+    background: linear-gradient(135deg, var(--text-dark) 0%, #4a1535 100%);
+    color: white;
+  }
+  #solucao .section-title { color: white; }
+  #solucao .section-sub { color: rgba(255,255,255,0.65); }
+  .ps-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    max-width: 680px;
+  }
+  .ps-card {
+    background: rgba(255,255,255,0.07); border-radius: 16px;
+    padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .ps-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .ps-label.problem { color: #fc8fa5; }
+  .ps-label.solution { color: #86efac; }
+  .ps-item { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
+  .ps-item:last-child { margin-bottom: 0; }
+  .ps-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .ps-dot.p { background: #fc8fa5; }
+  .ps-dot.s { background: #86efac; }
+  .ps-text { font-size: 0.9rem; color: rgba(255,255,255,0.85); }
+  .ps-connector { display: flex; align-items: center; justify-content: center; }
+  .ps-arrow {
+    width: 48px; height: 48px; background: var(--pink-strong);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; color: white;
+    box-shadow: 0 8px 24px rgba(217,90,146,0.4);
+  }
+  .ps-visual {
+    display: flex; flex-direction: column; gap: 1rem;
+    justify-content: center; align-items: center;
+  }
+  .ps-layout { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.5rem; align-items: start; }
+
+  /* ─── KITS ─── */
+  #kits { background: var(--gray); }
+  .kits-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .kit-card {
+    background: white; border-radius: 24px; overflow: hidden;
+    transition: all 0.25s; border: 1px solid rgba(217,90,146,0.1);
+    position: relative;
+  }
+  .kit-card.featured {
+    border: 2px solid var(--pink-strong);
+    transform: scale(1.03);
+  }
+  .kit-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 24px 56px rgba(217,90,146,0.2); }
+  .kit-card.featured:hover { transform: translateY(-6px) scale(1.04); }
+  .kit-top {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; position: relative;
+  }
+  .kit-top.g1 { background: linear-gradient(135deg, #FDE8F0, #F8D7E3); }
+  .kit-top.g2 { background: linear-gradient(135deg, #EFA4C0, #D95A92); }
+  .kit-top.g3 { background: linear-gradient(135deg, #F8D7E3, #EFA4C0); }
+  .kit-savings {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--pink-strong); color: white;
+    font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem;
+    border-radius: 50px; letter-spacing: 0.5px;
+  }
+  .kit-body { padding: 1.5rem; }
+  .kit-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .kit-items { font-size: 0.8rem; color: var(--text-soft); margin-bottom: 1rem; line-height: 1.7; }
+  .kit-items span { display: block; }
+  .kit-items span::before { content: "✓ "; color: var(--pink-strong); font-weight: 700; }
+  .kit-footer { display: flex; align-items: flex-end; justify-content: space-between; }
+  .kit-price-block {}
+  .kit-old { font-size: 0.8rem; color: var(--text-soft); text-decoration: line-through; }
+  .kit-new { font-size: 1.5rem; font-weight: 700; color: var(--pink-strong); }
+  .kit-btn {
+    background: var(--pink-strong); color: white;
+    border: none; border-radius: 50px; padding: 0.6rem 1.2rem;
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .kit-btn:hover { background: #c04a7f; transform: scale(1.05); }
+
+  /* ─── QUIZ ─── */
+  #quiz {
+    background: linear-gradient(135deg, #FDE8F0 0%, #F0C0D8 100%);
+  }
+  .quiz-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .quiz-box {
+    background: white; border-radius: 24px; padding: 2.5rem;
+    box-shadow: 0 24px 64px rgba(217,90,146,0.15);
+  }
+  .quiz-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem;
+    color: var(--text-dark);
+  }
+  .quiz-progress { margin-bottom: 1.5rem; }
+  .quiz-progress-bar {
+    height: 4px; background: var(--pink-light); border-radius: 4px; overflow: hidden;
+  }
+  .quiz-progress-fill {
+    height: 100%; background: var(--pink-strong); border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  .quiz-step-label { font-size: 0.75rem; color: var(--text-soft); margin-bottom: 0.5rem; }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; }
+  .quiz-opt {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.85rem 1rem; border-radius: 12px;
+    border: 1.5px solid var(--pink-light); cursor: pointer;
+    font-size: 0.9rem; font-weight: 500; color: var(--text-dark);
+    transition: all 0.2s; background: white;
+  }
+  .quiz-opt:hover { border-color: var(--pink-strong); background: var(--pink-light); }
+  .quiz-opt.selected { border-color: var(--pink-strong); background: var(--pink-light); color: var(--pink-strong); }
+  .quiz-opt-icon { font-size: 1.2rem; }
+  .quiz-nav { display: flex; justify-content: flex-end; margin-top: 1.5rem; }
+  .quiz-result { display: none; }
+  .quiz-result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-dark);
+  }
+  .quiz-result-products { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .quiz-result-item {
+    background: var(--pink-light); border-radius: 12px; padding: 0.75rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.82rem; font-weight: 500; color: var(--text-dark);
+  }
+  .quiz-result-item span { font-size: 1.3rem; }
+  .quiz-restart { background: none; border: none; color: var(--pink-strong); font-size: 0.8rem; cursor: pointer; margin-top: 1rem; text-decoration: underline; }
+
+  /* ─── ABOUT ─── */
+  #sobre {
+    display: flex; align-items: center; gap: 5rem;
+    background: white;
+  }
+  .sobre-img {
+    flex: 0 0 380px; height: 480px;
+    background: linear-gradient(160deg, #F8D7E3, #EFA4C0);
+    border-radius: 24px; display: flex; align-items: center;
+    justify-content: center; font-size: 6rem;
+    position: relative; overflow: hidden;
+  }
+  .sobre-img::after {
+    content: ''; position: absolute;
+    inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(217,90,146,0.2) 100%);
+  }
+  .sobre-content { flex: 1; }
+  .sobre-values { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .sobre-val {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 1rem; background: var(--gray); border-radius: 12px;
+  }
+  .sobre-val-icon { font-size: 1.4rem; }
+  .sobre-val-text strong { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .sobre-val-text span { font-size: 0.78rem; color: var(--text-soft); }
+
+  /* ─── AVALIAÇÕES ─── */
+  #avaliacoes { background: var(--gray); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .review-card {
+    background: white; border-radius: 20px; padding: 1.75rem;
+    border: 1px solid rgba(217,90,146,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .review-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(217,90,146,0.12); }
+  .review-stars { font-size: 1rem; color: #f59e0b; margin-bottom: 1rem; }
+  .review-text { font-size: 0.9rem; line-height: 1.7; color: var(--text-mid); margin-bottom: 1.25rem; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 0.75rem; }
+  .review-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-mid), var(--pink-strong));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem; color: white;
+  }
+  .review-name { font-weight: 600; font-size: 0.85rem; }
+  .review-date { font-size: 0.75rem; color: var(--text-soft); }
+
+  /* ─── INSTAGRAM ─── */
+  #instagram { background: white; text-align: center; }
+  #instagram .section-sub { margin-left: auto; margin-right: auto; text-align: center; }
+  .ig-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px;
+    margin-bottom: 2rem;
+  }
+  .ig-item {
+    aspect-ratio: 1; border-radius: 8px;
+    background: linear-gradient(135deg, #FDE8F0, #EFA4C0);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; cursor: pointer; overflow: hidden;
+    position: relative; transition: transform 0.2s;
+  }
+  .ig-item:hover { transform: scale(1.05); z-index: 1; }
+  .ig-item::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(217,90,146,0); transition: background 0.2s;
+  }
+  .ig-item:hover::after { background: rgba(217,90,146,0.2); }
+  .btn-ig {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white; border: none; border-radius: 50px; padding: 0.85rem 2rem;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s;
+    text-decoration: none;
+  }
+  .btn-ig:hover { opacity: 0.88; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--text-dark); color: rgba(255,255,255,0.8);
+    padding: 3.5rem 5% 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .nav-logo { font-size: 1.6rem; }
+  .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin: 0.75rem 0 1.5rem; line-height: 1.6; }
+  .footer-social { display: flex; gap: 0.75rem; }
+  .footer-social a {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.7); font-size: 1rem; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .footer-social a:hover { background: var(--pink-strong); border-color: var(--pink-strong); color: white; }
+  .footer-col h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: white; margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul a { color: rgba(255,255,255,0.55); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--pink-mid); }
+  .footer-payments { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .pay-badge {
+    background: rgba(255,255,255,0.1); border-radius: 6px;
+    padding: 0.3rem 0.6rem; font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.7);
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4);
+  }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 200;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+    cursor: pointer; transition: transform 0.2s;
+    text-decoration: none; color: white;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ─── CART DRAWER ─── */
+  .cart-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-drawer {
+    position: fixed; top: 0; right: -400px; width: 380px; height: 100vh;
+    background: white; z-index: 301; transition: right 0.3s ease;
+    display: flex; flex-direction: column;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+  }
+  .cart-drawer.open { right: 0; }
+  .cart-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--pink-light);
+  }
+  .cart-header h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+  .cart-close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-mid); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.25rem 1.5rem; }
+  .cart-item {
+    display: flex; gap: 1rem; align-items: center;
+    padding: 0.85rem 0; border-bottom: 1px solid var(--gray);
+  }
+  .cart-item-img {
+    width: 60px; height: 60px; border-radius: 10px;
+    background: var(--pink-light); display: flex; align-items: center;
+    justify-content: center; font-size: 1.8rem; flex-shrink: 0;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .cart-item-price { font-size: 0.9rem; font-weight: 700; color: var(--pink-strong); }
+  .cart-item-qty {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+  .qty-btn {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 1.5px solid var(--pink-mid); background: none;
+    cursor: pointer; font-size: 1rem; color: var(--pink-strong);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .qty-btn:hover { background: var(--pink-strong); color: white; border-color: var(--pink-strong); }
+  .cart-empty { text-align: center; padding: 3rem 1rem; }
+  .cart-empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .cart-empty p { color: var(--text-soft); font-size: 0.9rem; }
+  .cart-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--pink-light); }
+  .cart-total { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+  .cart-total span { font-size: 0.9rem; color: var(--text-soft); }
+  .cart-total strong { font-size: 1.1rem; font-weight: 700; color: var(--pink-strong); }
+  .btn-checkout {
+    width: 100%; padding: 1rem; background: var(--pink-strong); color: white;
+    border: none; border-radius: 50px; font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-checkout:hover { background: #c04a7f; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--text-dark); color: white; border-radius: 50px;
+    padding: 0.7rem 1.5rem; font-size: 0.88rem; font-weight: 500;
+    z-index: 400; opacity: 0; transition: all 0.3s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    #hero { flex-direction: column; padding: 100px 4% 3rem; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-stats { justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .ps-layout { grid-template-columns: 1fr; }
+    .ps-connector { display: none; }
+    .kits-grid { grid-template-columns: 1fr; }
+    .kit-card.featured { transform: none; }
+    .quiz-wrap { grid-template-columns: 1fr; }
+    #sobre { flex-direction: column; }
+    .sobre-img { flex: none; width: 100%; height: 260px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .ig-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .cart-drawer { width: 100%; right: -100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Laiza Beauty</a>
+  <ul class="nav-links">
+    <li><a href="#categories">Produtos</a></li>
+    <li><a href="#kits">Kits</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+  </ul>
+  <div style="display:flex; align-items:center; gap:0.5rem;">
+    <div class="nav-cart" onclick="toggleCart()" title="Ver carrinho">
+      🛒<span class="cart-badge" id="cart-badge">0</span>
+    </div>
+    <a href="#categories" class="nav-cta">Comprar</a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circles">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">✨ Beleza que cuida</span>
+    <h1 class="hero-title">Sua rotina de beleza<br><em>começa aqui</em></h1>
+    <p class="hero-sub">Maquiagem, skincare e acessórios selecionados com carinho para você se sentir ainda mais linda.</p>
+    <div class="hero-btns">
+      <a href="#categories" class="btn-primary">Comprar Agora</a>
+      <a href="#kits" class="btn-outline">Ver Lançamentos</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>+2.400</strong>
+        <span>Clientes felizes</span>
+      </div>
+      <div class="hero-stat">
+        <strong>4.9★</strong>
+        <span>Avaliação média</span>
+      </div>
+      <div class="hero-stat">
+        <strong>100%</strong>
+        <span>Entrega garantida</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div style="position:relative;">
+      <div class="hero-mockup-img">
+        <div class="hero-products">
+          <div class="hero-product-dot">💄</div>
+          <div class="hero-product-dot">✨</div>
+          <div class="hero-product-dot">🌸</div>
+          <div class="hero-product-dot">💅</div>
+        </div>
+      </div>
+      <div class="hero-tag hero-tag-1">⭐ Avaliado 5 estrelas</div>
+      <div class="hero-tag hero-tag-2">🚚 Frete grátis acima de R$149</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES + PRODUCTS -->
+<section id="categories">
+  <span class="section-label">Nossos Produtos</span>
+  <h2 class="section-title">Produtos em Destaque</h2>
+  <p class="section-sub">Cada item selecionado com atenção para realçar sua beleza natural.</p>
+
+  <div class="cat-grid">
+    <div class="cat-card active" onclick="filterProducts('all', this)">
+      <div class="cat-icon">💄</div>
+      <div class="cat-name">Maquiagem</div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('skincare', this)">
+      <div class="cat-icon">🌿</div>
+      <div class="cat-name">Skincare</div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('kits-cat', this)">
+      <div class="cat-icon">🎁</div>
+      <div class="cat-name">Kits</div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('acessorios', this)">
+      <div class="cat-icon">💎</div>
+      <div class="cat-name">Acessórios</div>
+    </div>
+  </div>
+
+  <div class="products-grid" id="products-grid">
+    <div class="product-card" data-cat="maquiagem">
+      <div class="product-img">💄<span class="product-badge">Mais vendido</span></div>
+      <div class="product-info">
+        <div class="product-name">Batom Matte Rosado</div>
+        <div class="product-desc">Longa duração, não resseca. Perfeito para o dia a dia.</div>
+        <div class="product-stars">★★★★★ (128)</div>
+        <div class="product-footer">
+          <div><div class="product-price-old">R$ 39,90</div><div class="product-price">R$ 29,90</div></div>
+          <button class="btn-cart" onclick="addToCart('Batom Matte Rosado', 29.90, '💄')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-cat="skincare">
+      <div class="product-img">✨</div>
+      <div class="product-info">
+        <div class="product-name">Sérum Facial Glow</div>
+        <div class="product-desc">Vitamina C concentrada para pele com viço e luminosidade.</div>
+        <div class="product-stars">★★★★★ (94)</div>
+        <div class="product-footer">
+          <div><div class="product-price-old">R$ 79,90</div><div class="product-price">R$ 59,90</div></div>
+          <button class="btn-cart" onclick="addToCart('Sérum Facial Glow', 59.90, '✨')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-cat="maquiagem">
+      <div class="product-img">🌸<span class="product-badge">Novo</span></div>
+      <div class="product-info">
+        <div class="product-name">Bruma Fixadora</div>
+        <div class="product-desc">Fixa a maquiagem por até 16h. Efeito pele de vidro.</div>
+        <div class="product-stars">★★★★★ (76)</div>
+        <div class="product-footer">
+          <div><div class="product-price-old">R$ 49,90</div><div class="product-price">R$ 34,90</div></div>
+          <button class="btn-cart" onclick="addToCart('Bruma Fixadora', 34.90, '🌸')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-cat="skincare">
+      <div class="product-img">🌿</div>
+      <div class="product-info">
+        <div class="product-name">Pó Banana Translúcido</div>
+        <div class="product-desc">Controla a oleosidade e ilumina o under-eye. Ultrafino.</div>
+        <div class="product-stars">★★★★☆ (52)</div>
+        <div class="product-footer">
+          <div><div class="product-price-old">R$ 55,90</div><div class="product-price">R$ 42,90</div></div>
+          <button class="btn-cart" onclick="addToCart('Pó Banana Translúcido', 42.90, '🌿')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-cat="acessorios">
+      <div class="product-img">💅</div>
+      <div class="product-info">
+        <div class="product-name">Kit de Pincéis Pro</div>
+        <div class="product-desc">8 pincéis em cabo rose gold com estojo premium.</div>
+        <div class="product-stars">★★★★★ (109)</div>
+        <div class="product-footer">
+          <div><div class="product-price-old">R$ 89,90</div><div class="product-price">R$ 69,90</div></div>
+          <button class="btn-cart" onclick="addToCart('Kit de Pincéis Pro', 69.90, '💅')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-cat="skincare">
+      <div class="product-img">💖<span class="product-badge">Favorito</span></div>
+      <div class="product-info">
+        <div class="product-name">Kit Make Off</div>
+        <div class="product-desc">Demaquilante micelar + lenço de algodão orgânico.</div>
+        <div class="product-stars">★★★★★ (63)</div>
+        <div class="product-footer">
+          <div><div class="product-price-old">R$ 59,90</div><div class="product-price">R$ 44,90</div></div>
+          <button class="btn-cart" onclick="addToCart('Kit Make Off', 44.90, '💖')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-cat="maquiagem">
+      <div class="product-img">🎨</div>
+      <div class="product-info">
+        <div class="product-name">Paleta de Sombras Rosa</div>
+        <div class="product-desc">12 tons entre rosados e terrosos para look dia e noite.</div>
+        <div class="product-stars">★★★★★ (87)</div>
+        <div class="product-footer">
+          <div><div class="product-price-old">R$ 75,90</div><div class="product-price">R$ 55,90</div></div>
+          <button class="btn-cart" onclick="addToCart('Paleta de Sombras Rosa', 55.90, '🎨')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" data-cat="acessorios">
+      <div class="product-img">🪞</div>
+      <div class="product-info">
+        <div class="product-name">Esponja Beauty Blender</div>
+        <div class="product-desc">Aplicação suave e sem marcas. Acabamento profissional.</div>
+        <div class="product-stars">★★★★☆ (45)</div>
+        <div class="product-footer">
+          <div><div class="product-price-old">R$ 29,90</div><div class="product-price">R$ 19,90</div></div>
+          <button class="btn-cart" onclick="addToCart('Esponja Beauty Blender', 19.90, '🪞')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA X SOLUÇÃO -->
+<section id="solucao">
+  <span class="section-label" style="color:#EFA4C0;">Sua pele merece</span>
+  <h2 class="section-title">Problema → Solução</h2>
+  <p class="section-sub">Cada problema de pele tem uma resposta certeira. Veja como a Laiza Beauty resolve:</p>
+  <div class="ps-layout">
+    <div class="ps-card">
+      <div class="ps-label problem">⚠ Problemas comuns</div>
+      <div class="ps-item"><div class="ps-dot p"></div><div class="ps-text">Pele oleosa e com brilho</div></div>
+      <div class="ps-item"><div class="ps-dot p"></div><div class="ps-text">Maquiagem derretendo</div></div>
+      <div class="ps-item"><div class="ps-dot p"></div><div class="ps-text">Pele sem viço e apagada</div></div>
+      <div class="ps-item"><div class="ps-dot p"></div><div class="ps-text">Dificuldade na remoção</div></div>
+    </div>
+    <div class="ps-connector">
+      <div class="ps-arrow">→</div>
+    </div>
+    <div class="ps-card">
+      <div class="ps-label solution">✓ Nossas soluções</div>
+      <div class="ps-item"><div class="ps-dot s"></div><div class="ps-text">Pó Banana Translúcido</div></div>
+      <div class="ps-item"><div class="ps-dot s"></div><div class="ps-text">Bruma Fixadora 16h</div></div>
+      <div class="ps-item"><div class="ps-dot s"></div><div class="ps-text">Sérum Facial com Vit. C</div></div>
+      <div class="ps-item"><div class="ps-dot s"></div><div class="ps-text">Kit Make Off Completo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- KITS -->
+<section id="kits">
+  <span class="section-label">Combos Exclusivos</span>
+  <h2 class="section-title">Kits Promocionais</h2>
+  <p class="section-sub">Kits montados com carinho para você economizar mais e cuidar melhor.</p>
+  <div class="kits-grid">
+    <div class="kit-card">
+      <div class="kit-top g1">
+        ✨<span class="kit-savings">Economize 15%</span>
+      </div>
+      <div class="kit-body">
+        <div class="kit-name">Kit Glow</div>
+        <div class="kit-items">
+          <span>Sérum Facial com Vitamina C</span>
+          <span>Bruma Fixadora Hidratante</span>
+          <span>Pó Banana Iluminador</span>
+        </div>
+        <div class="kit-footer">
+          <div class="kit-price-block">
+            <div class="kit-old">R$ 189,70</div>
+            <div class="kit-new">R$ 159,90</div>
+          </div>
+          <button class="kit-btn" onclick="addToCart('Kit Glow', 159.90, '✨')">Quero esse kit</button>
+        </div>
+      </div>
+    </div>
+    <div class="kit-card featured">
+      <div class="kit-top g2">
+        💖<span class="kit-savings">Economize 20%</span>
+      </div>
+      <div class="kit-body">
+        <div class="kit-name">Kit Make Off</div>
+        <div class="kit-items">
+          <span>Demaquilante Micelar 200ml</span>
+          <span>Lenços de Algodão Orgânico</span>
+          <span>Gel de Limpeza Facial</span>
+          <span>Tônico Calmante Rosas</span>
+        </div>
+        <div class="kit-footer">
+          <div class="kit-price-block">
+            <div class="kit-old">R$ 224,60</div>
+            <div class="kit-new">R$ 179,90</div>
+          </div>
+          <button class="kit-btn" onclick="addToCart('Kit Make Off', 179.90, '💖')">Quero esse kit</button>
+        </div>
+      </div>
+    </div>
+    <div class="kit-card">
+      <div class="kit-top g3">
+        🌿<span class="kit-savings">Economize 18%</span>
+      </div>
+      <div class="kit-body">
+        <div class="kit-name">Kit Skincare Inicial</div>
+        <div class="kit-items">
+          <span>Sérum Anti-oleosidade</span>
+          <span>Hidratante Facial Leve</span>
+          <span>Protetor Solar FPS50</span>
+        </div>
+        <div class="kit-footer">
+          <div class="kit-price-block">
+            <div class="kit-old">R$ 199,70</div>
+            <div class="kit-new">R$ 164,90</div>
+          </div>
+          <button class="kit-btn" onclick="addToCart('Kit Skincare Inicial', 164.90, '🌿')">Quero esse kit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="quiz-wrap">
+    <div>
+      <span class="section-label">Experiência Personalizada</span>
+      <h2 class="section-title">Quiz de Beleza</h2>
+      <p class="section-sub">Responda 4 perguntas rápidas e descubra quais produtos da Laiza Beauty foram feitos para o seu tipo de pele.</p>
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;">
+        <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.9rem;color:var(--text-mid);">
+          <span style="width:32px;height:32px;background:var(--pink-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--pink-strong);font-weight:700;flex-shrink:0;">1</span>
+          Identifique seu tipo de pele
+        </div>
+        <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.9rem;color:var(--text-mid);">
+          <span style="width:32px;height:32px;background:var(--pink-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--pink-strong);font-weight:700;flex-shrink:0;">2</span>
+          Diga seus maiores desafios
+        </div>
+        <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.9rem;color:var(--text-mid);">
+          <span style="width:32px;height:32px;background:var(--pink-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--pink-strong);font-weight:700;flex-shrink:0;">3</span>
+          Receba recomendações personalizadas
+        </div>
+      </div>
+    </div>
+    <div class="quiz-box">
+      <div id="quiz-form">
+        <div class="quiz-progress">
+          <div class="quiz-step-label" id="quiz-step-label">Pergunta 1 de 4</div>
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-fill" style="width:25%"></div></div>
+        </div>
+        <div class="quiz-q" id="quiz-question">Qual é o seu tipo de pele?</div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-nav">
+          <button class="btn-primary" onclick="quizNext()" id="quiz-next-btn" style="padding:0.65rem 1.5rem;font-size:0.875rem;">Próxima →</button>
+        </div>
+      </div>
+      <div class="quiz-result" id="quiz-result">
+        <div class="quiz-result-title">✨ Perfeito! Seus produtos ideais são:</div>
+        <div class="quiz-result-products" id="quiz-result-list"></div>
+        <button class="quiz-restart" onclick="quizRestart()">Refazer o quiz</button>
+        <button class="btn-primary" style="width:100%;margin-top:1rem;padding:0.75rem;" onclick="document.getElementById('categories').scrollIntoView()">Ver produtos →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-img">🌸</div>
+  <div class="sobre-content">
+    <span class="section-label">Nossa História</span>
+    <h2 class="section-title">Sobre a Laiza Beauty</h2>
+    <p style="font-size:1rem;color:var(--text-mid);line-height:1.8;margin-bottom:1rem;">
+      A Laiza Beauty nasceu de um sonho simples: tornar a beleza acessível para todas. Selecionamos cada produto com cuidado, testando pessoalmente para garantir que chegue até você com qualidade e carinho.
+    </p>
+    <p style="font-size:1rem;color:var(--text-mid);line-height:1.8;">
+      Acreditamos que maquiagem e skincare são formas de autocuidado — e que toda mulher merece se sentir linda, do seu jeito.
+    </p>
+    <div class="sobre-values">
+      <div class="sobre-val">
+        <div class="sobre-val-icon">💎</div>
+        <div class="sobre-val-text">
+          <strong>Qualidade garantida</strong>
+          <span>Produtos testados e aprovados</span>
+        </div>
+      </div>
+      <div class="sobre-val">
+        <div class="sobre-val-icon">🌱</div>
+        <div class="sobre-val-text">
+          <strong>Cruelty free</strong>
+          <span>Sem testes em animais</span>
+        </div>
+      </div>
+      <div class="sobre-val">
+        <div class="sobre-val-icon">💌</div>
+        <div class="sobre-val-text">
+          <strong>Com carinho</strong>
+          <span>Embalagem especial em cada pedido</span>
+        </div>
+      </div>
+      <div class="sobre-val">
+        <div class="sobre-val-icon">🚚</div>
+        <div class="sobre-val-text">
+          <strong>Entrega rápida</strong>
+          <span>Frete grátis acima de R$149</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section id="avaliacoes">
+  <span class="section-label">Depoimentos</span>
+  <h2 class="section-title">O que nossas clientes dizem</h2>
+  <p class="section-sub">Mais de 2.400 mulheres já transformaram sua rotina com a Laiza Beauty.</p>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"A bruma fixadora é maravilhosa! Minha maquiagem durou o dia todo e chegou super rápido. Já é o terceiro que compro!"</p>
+      <div class="review-author">
+        <div class="review-avatar">AM</div>
+        <div><div class="review-name">Amanda M.</div><div class="review-date">Há 3 dias</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Os kits têm ótimo custo-benefício. Comprei o Kit Glow e minha pele ficou muito mais bonita em duas semanas. Recomendo demais!"</p>
+      <div class="review-author">
+        <div class="review-avatar">CF</div>
+        <div><div class="review-name">Carolina F.</div><div class="review-date">Há 1 semana</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Atendimento perfeito e produtos de qualidade. O sérum facial já faz parte da minha rotina diária. Amei tudo!"</p>
+      <div class="review-author">
+        <div class="review-avatar">JR</div>
+        <div><div class="review-name">Juliana R.</div><div class="review-date">Há 2 semanas</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Fiz o quiz de beleza e as recomendações foram incríveis! Exatamente o que eu precisava para minha pele mista. Chegou em 2 dias!"</p>
+      <div class="review-author">
+        <div class="review-avatar">PS</div>
+        <div><div class="review-name">Patrícia S.</div><div class="review-date">Há 3 semanas</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"O batom matte é lindo e dura muito! Não resseca o lábio como outros. Já comprei 3 cores diferentes e pretendo continuar comprando."</p>
+      <div class="review-author">
+        <div class="review-avatar">BL</div>
+        <div><div class="review-name">Beatriz L.</div><div class="review-date">Há 1 mês</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Embalagem linda, produtos de qualidade e entrega super rápida. A Laiza Beauty superou todas as expectativas. Voltarei sempre!"</p>
+      <div class="review-author">
+        <div class="review-avatar">MO</div>
+        <div><div class="review-name">Mariana O.</div><div class="review-date">Há 1 mês</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <span class="section-label">@laizabeauty</span>
+  <h2 class="section-title">Nos siga no Instagram</h2>
+  <p class="section-sub">Tutoriais, dicas de beleza e novidades todos os dias.</p>
+  <div class="ig-grid">
+    <div class="ig-item">💄</div>
+    <div class="ig-item">✨</div>
+    <div class="ig-item">🌸</div>
+    <div class="ig-item">💅</div>
+    <div class="ig-item">🌿</div>
+    <div class="ig-item">💖</div>
+  </div>
+  <a href="https://instagram.com/laizabeauty" class="btn-ig" target="_blank">
+    📸 Seguir no Instagram
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Laiza Beauty</a>
+      <p class="footer-tagline">Maquiagem e skincare acessíveis, de qualidade<br>e escolhidos com carinho para você.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="WhatsApp">💬</a>
+        <a href="#" title="TikTok">🎵</a>
+        <a href="#" title="Pinterest">📌</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Produtos</h4>
+      <ul>
+        <li><a href="#categories">Maquiagem</a></li>
+        <li><a href="#categories">Skincare</a></li>
+        <li><a href="#kits">Kits Promocionais</a></li>
+        <li><a href="#categories">Acessórios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Atendimento</h4>
+      <ul>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="#">Rastrear Pedido</a></li>
+        <li><a href="#">Política de Troca</a></li>
+        <li><a href="#">Perguntas Frequentes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Pagamento</h4>
+      <div class="footer-payments">
+        <span class="pay-badge">Pix</span>
+        <span class="pay-badge">Cartão</span>
+        <span class="pay-badge">Boleto</span>
+        <span class="pay-badge">Parcelado</span>
+      </div>
+      <div style="margin-top:1rem;font-size:0.8rem;color:rgba(255,255,255,0.5);">
+        🔒 Compra 100% segura<br>
+        Dados protegidos com SSL
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Laiza Beauty. Todos os direitos reservados.</span>
+    <span>Feito com 💖 para a beleza de todas</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5511999999999" class="wa-float" target="_blank" title="Falar no WhatsApp">💬</a>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <h3>Meu Carrinho 🛍</h3>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <p>Seu carrinho está vazio.<br>Que tal adicionar algum produto?</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cart-total-val">R$ 0,00</strong>
+    </div>
+    <button class="btn-checkout">Finalizar Compra 🎀</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── CART STATE ──
+  let cart = [];
+
+  function addToCart(name, price, emoji) {
+    const existing = cart.find(i => i.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, emoji, qty: 1 });
+    }
+    updateCart();
+    showToast('✓ ' + name + ' adicionado!');
+  }
+
+  function updateCart() {
+    const badge = document.getElementById('cart-badge');
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const count = cart.reduce((s, i) => s + i.qty, 0);
+    badge.textContent = count;
+
+    const itemsEl = document.getElementById('cart-items');
+    const footer = document.getElementById('cart-footer');
+    const totalEl = document.getElementById('cart-total-val');
+
+    if (cart.length === 0) {
+      itemsEl.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Seu carrinho está vazio.<br>Que tal adicionar algum produto?</p></div>';
+      footer.style.display = 'none';
+    } else {
+      itemsEl.innerHTML = cart.map((item, idx) => `
+        <div class="cart-item">
+          <div class="cart-item-img">${item.emoji}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
+            <div class="cart-item-qty">
+              <button class="qty-btn" onclick="changeQty(${idx}, -1)">−</button>
+              <span style="font-size:0.85rem;font-weight:600;">${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      footer.style.display = 'block';
+      totalEl.textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+    }
+  }
+
+  function changeQty(idx, delta) {
+    cart[idx].qty += delta;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+    updateCart();
+  }
+
+  function toggleCart() {
+    document.getElementById('cart-drawer').classList.toggle('open');
+    document.getElementById('cart-overlay').classList.toggle('open');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // ── FILTER ──
+  function filterProducts(cat, el) {
+    document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+      const cardCat = card.dataset.cat;
+      const show = cat === 'all' || cat === 'maquiagem' && cardCat === 'maquiagem'
+        || cat === 'skincare' && cardCat === 'skincare'
+        || cat === 'acessorios' && cardCat === 'acessorios'
+        || cat === 'kits-cat' && cardCat === 'kits-cat';
+      card.style.display = show ? '' : 'none';
+    });
+    if (cat === 'all') document.querySelectorAll('.product-card').forEach(c => c.style.display = '');
+  }
+
+  // ── QUIZ ──
+  const questions = [
+    {
+      q: 'Qual é o seu tipo de pele?',
+      opts: [
+        { icon: '✨', text: 'Oleosa — brilho ao longo do dia' },
+        { icon: '🌵', text: 'Seca — resseca e descama' },
+        { icon: '🌸', text: 'Mista — oleosa no T' },
+        { icon: '🍃', text: 'Normal — equilibrada' }
+      ]
+    },
+    {
+      q: 'Qual é o seu maior desafio com a maquiagem?',
+      opts: [
+        { icon: '💧', text: 'Maquiagem dura pouco tempo' },
+        { icon: '🌟', text: 'Pele apagada e sem viço' },
+        { icon: '😌', text: 'Dificuldade em remover' },
+        { icon: '🎨', text: 'Encontrar tom certo' }
+      ]
+    },
+    {
+      q: 'Qual produto você mais usa no dia a dia?',
+      opts: [
+        { icon: '💄', text: 'Base e corretivo' },
+        { icon: '🌿', text: 'Apenas skincare' },
+        { icon: '👄', text: 'Batom e blush' },
+        { icon: '🎭', text: 'Make completa' }
+      ]
+    },
+    {
+      q: 'Qual resultado você quer alcançar?',
+      opts: [
+        { icon: '✨', text: 'Pele radiante e iluminada' },
+        { icon: '🌙', text: 'Look duradouro' },
+        { icon: '🌱', text: 'Pele saudável sem make' },
+        { icon: '💃', text: 'Look intenso e marcante' }
+      ]
+    }
+  ];
+
+  const recommendations = {
+    '0,0': [{ e:'🌿', n:'Pó Banana' }, { e:'✨', n:'Bruma Fixadora' }, { e:'💖', n:'Sérum Matte' }, { e:'🎁', n:'Kit Glow Oil Control' }],
+    '0,1': [{ e:'✨', n:'Sérum Glow' }, { e:'🌸', n:'Bruma Fixadora' }, { e:'💄', n:'Base Luminosa' }, { e:'🎁', n:'Kit Glow Completo' }],
+    '0,2': [{ e:'💖', n:'Kit Make Off' }, { e:'🌿', n:'Pó Banana' }, { e:'🌸', n:'Demaquilante' }, { e:'✨', n:'Tônico Calmante' }],
+    'default': [{ e:'💄', n:'Batom Matte' }, { e:'✨', n:'Sérum Glow' }, { e:'🌸', n:'Bruma Fixadora' }, { e:'🎁', n:'Kit Skincare Inicial' }]
+  };
+
+  let quizStep = 0;
+  let quizAnswers = [];
+  let selectedOpt = null;
+
+  function renderQuiz() {
+    const q = questions[quizStep];
+    document.getElementById('quiz-question').textContent = q.q;
+    document.getElementById('quiz-step-label').textContent = `Pergunta ${quizStep + 1} de ${questions.length}`;
+    document.getElementById('quiz-fill').style.width = `${((quizStep + 1) / questions.length) * 100}%`;
+    const opts = document.getElementById('quiz-options');
+    opts.innerHTML = q.opts.map((o, i) => `
+      <div class="quiz-opt" onclick="selectOpt(this, ${i})">
+        <span class="quiz-opt-icon">${o.icon}</span>${o.text}
+      </div>
+    `).join('');
+    selectedOpt = null;
+    document.getElementById('quiz-next-btn').textContent = quizStep === questions.length - 1 ? 'Ver resultado ✨' : 'Próxima →';
+  }
+
+  function selectOpt(el, idx) {
+    document.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedOpt = idx;
+  }
+
+  function quizNext() {
+    if (selectedOpt === null) { showToast('Selecione uma opção!'); return; }
+    quizAnswers.push(selectedOpt);
+    quizStep++;
+    if (quizStep < questions.length) {
+      renderQuiz();
+    } else {
+      showQuizResult();
+    }
+  }
+
+  function showQuizResult() {
+    document.getElementById('quiz-form').style.display = 'none';
+    const result = document.getElementById('quiz-result');
+    result.style.display = 'block';
+    const key = quizAnswers[0] + ',' + quizAnswers[1];
+    const prods = recommendations[key] || recommendations['default'];
+    document.getElementById('quiz-result-list').innerHTML = prods.map(p =>
+      `<div class="quiz-result-item"><span>${p.e}</span>${p.n}</div>`
+    ).join('');
+  }
+
+  function quizRestart() {
+    quizStep = 0; quizAnswers = []; selectedOpt = null;
+    document.getElementById('quiz-form').style.display = 'block';
+    document.getElementById('quiz-result').style.display = 'none';
+    renderQuiz();
+  }
+
+  renderQuiz();
+
+  // Mobile nav
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const cta = document.querySelector('.nav-cta');
+    if (links.style.display === 'flex') {
+      links.style.display = ''; cta.style.display = '';
+    } else {
+      links.style.display = 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'fixed';
+      links.style.top = '64px';
+      links.style.left = '0'; links.style.right = '0';
+      links.style.background = 'white';
+      links.style.padding = '1.5rem 2rem';
+      links.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1)';
+      links.style.zIndex = '99';
+    }
+  }
+</script>
+</body>
+</html>
